@@ -1,0 +1,73 @@
+.comments {
+    margin: 0px;
+    padding: 0px;
+}
+
+.comment__item {
+    list-style: none;
+    margin: 0px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.comment__item__content {
+    float: left;
+    background-image: url("../images/quote-icon.png");
+    background-repeat: no-repeat;
+    background-position: left top;
+    padding: 10px 0px 0px 5px;
+    width: 88%;
+}
+
+.comment__item__grey__content {
+    width: 80%;
+}
+.comment__item__figure {
+    float: left;
+    width: 10%;
+    margin: 0px 10px 0px 0px;
+}
+
+.comment__grey {
+    background-color: #f7f7f8;
+}
+
+.comment__item__grey {
+
+}
+
+.comment__item__grey__figure, .comment__two_column_item__figure {
+    width: 18%;
+}
+
+.comment__item__grey__figure-img {
+}
+
+.comment__item__figure-img {
+
+    position: relative;
+    z-index: 5;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.comment__item__figure img{
+    position: relative;
+    z-index: 5;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+.comment__item__content-blockquote {
+    margin: 0px 0px 0px 0px;
+    font-family: "Lato";
+    font-style: italic;
+    font-weight: 400;
+    text-align: justify;
+}
+
+.comment_text {
+    text-align: justify;
+}
