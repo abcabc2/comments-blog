@@ -112,62 +112,91 @@ $default_avatars = array(
 
 $i=0;
 foreach ( $comments as $comment ) :
-    $my_default_avatar_now = array_rand($default_avatars);
-    //$avatar_comments='<img style="width:200px; height:200px;" src="'.$default_avatars[$my_default_avatar_now].'" />';
-    //$avatar_comments='<img src="'.$my_default_avatar_now.'" class="avatar" />';
-    //get_avatar( $comment, '60' )
-    //get_avatar( $comment, '110' )
-    //get_avatar( $comment, '80' )
-    //$default_avatars[$my_default_avatar_now]
-    if($i==0){
-        $zm='
-        <table >
-        <tr>
-            <td style="border:none;">
-                <div class="comment__item">
-                    <figure class="comment__item__figure comment__two_column_item__figure">
-                        <img style="width:60px; height:60px;" src="'.$default_avatars[array_rand($default_avatars)].'" />
-                    </figure> 
-                     <div class="comment__item__content">
-                        <div class="comment__item__content-blockquote">
-                            <p>'. $comment->comment_content .'</p>
-                        </div>
-                        <div>
-                            <p>wyprawa: <b><a href="'.get_permalink($comment->comment_post_ID).'">' .$comment->post_title . '</a></b></p>
-                        </div>  
-                     </div>   
-               </div>
+    //echo $comment->get_post_type($comment->comment_post_ID);
+    //printf( __( 'The post type is: %s', 'textdomain' ), get_post_type( get_the_ID() ) );
+    //echo 'commmmm:'.$comment->comment_post_ID . '<br>';
+    //printf( __( 'The post2 type is: %s', 'textdomain' ), get_post_type( $comment->comment_post_ID ) );
+    //echo $fgh=get_post_type(1);
+    if(get_post_type( $comment->comment_post_ID ) == 'tour'){
+        $my_default_avatar_now = array_rand($default_avatars);
+        //$avatar_comments='<img style="width:200px; height:200px;" src="'.$default_avatars[$my_default_avatar_now].'" />';
+        //$avatar_comments='<img src="'.$my_default_avatar_now.'" class="avatar" />';
+        //get_avatar( $comment, '60' )
+        //get_avatar( $comment, '110' )
+        //get_avatar( $comment, '80' )
+        //$default_avatars[$my_default_avatar_now]
+        if(($i==0)||($i==1)){
+            if($i==0){
+            $zm='
+            <table >
+            <tr>
+                 <td style="border:none;">
+                    <div class="comment__item">
+                        <figure class="comment__item__figure comment__two_column_item__figure">
+                            <img style="width:60px; height:60px;" src="'.$default_avatars[array_rand($default_avatars)].'" />
+                        </figure> 
+                        <div class="comment__item__content">
+                            <div class="comment__item__content-blockquote">
+                                <p>'. $comment->comment_content .'</p>
+                            </div>
+                            <div>
+                                <p>wyprawa: <b><a href="'.get_permalink($comment->comment_post_ID).'">' .$comment->post_title . '</a></b></p>
+                            </div>  
+                        </div>   
+                </div>
 
-            </td>
-            <td style="border:none;">
-                <div class="comment__item">
-                    <figure class="comment__item__figure comment__two_column_item__figure">
-                        <img style="width:60px; height:60px;" src="'.$default_avatars[array_rand($default_avatars)].'" />
+                </td>';
+                }elseif($i==1){
+                $zm='   
+                <td style="border:none;">
+                    <div class="comment__item">
+                        <figure class="comment__item__figure comment__two_column_item__figure">
+                            <img style="width:60px; height:60px;" src="'.$default_avatars[array_rand($default_avatars)].'" />
+                        </figure> 
+                        <div class="comment__item__content">
+                            <div class="comment__item__content-blockquote">
+                                <p>'. $comment->comment_content .'</p>
+                            </div>
+                            <div>
+                            <p>wyprawa: <b><a href="'.get_permalink($comment->comment_post_ID).'">' .$comment->post_title . '</a></b></p>
+                            </div>  
+                        </div>   
+                </div>                            
+                </td>
+            </tr>
+        </table> 
+            ';}
+            $Content = $Content.$zm;
+            $i++;
+        }
+        elseif ($i==2) {
+            $zm='
+            <p>   
+                <div class="comment__item comment__grey">
+                    <figure class="comment__item__figure comment__item__grey__figure ">
+                        <img style="width:110px; height:110px;" src="'.$default_avatars[array_rand($default_avatars)].'" />
                     </figure> 
-                     <div class="comment__item__content">
+                    <div class="comment__item__content comment__item__grey__content">
                         <div class="comment__item__content-blockquote">
                             <p>'. $comment->comment_content .'</p>
                         </div>
                         <div>
-                        <p>wyprawa: <b><a href="'.get_permalink($comment->comment_post_ID).'">' .$comment->post_title . '</a></b></p>
+                                <p>wyprawa: <b><a href="'.get_permalink($comment->comment_post_ID).'">' .$comment->post_title . '</a></b></p>
                         </div>  
-                     </div>   
-               </li>                            
-            </td>
-        </tr>
-    </table> 
-        ';
-        $Content = $Content.$zm;
-        $i++;
-    }
-    elseif ($i==1) {
+                    </div>   
+                </div>
+            </p>  
+            ';
+            $Content = $Content.$zm;
+            $i++;
+        }else{
         $zm='
         <p>   
-            <div class="comment__item comment__grey">
-                <figure class="comment__item__figure comment__item__grey__figure ">
-                    <img style="width:110px; height:110px;" src="'.$default_avatars[array_rand($default_avatars)].'" />
+            <div class="comment__item">
+                <figure class="comment__item__figure ">
+                    <img style="width:80px; height:80px;" src="'.$default_avatars[array_rand($default_avatars)].'" />
                 </figure> 
-                <div class="comment__item__content comment__item__grey__content">
+                <div class="comment__item__content">
                     <div class="comment__item__content-blockquote">
                         <p>'. $comment->comment_content .'</p>
                     </div>
@@ -179,27 +208,8 @@ foreach ( $comments as $comment ) :
         </p>  
         ';
         $Content = $Content.$zm;
-        $i++;
-    }else{
-    $zm='
-    <p>   
-        <div class="comment__item">
-            <figure class="comment__item__figure ">
-                <img style="width:80px; height:80px;" src="'.$default_avatars[array_rand($default_avatars)].'" />
-            </figure> 
-            <div class="comment__item__content">
-                <div class="comment__item__content-blockquote">
-                    <p>'. $comment->comment_content .'</p>
-                </div>
-                <div>
-                        <p>wyprawa: <b><a href="'.get_permalink($comment->comment_post_ID).'">' .$comment->post_title . '</a></b></p>
-                </div>  
-            </div>   
-        </div>
-    </p>  
-    ';
-    $Content = $Content.$zm;
-    }
+    }    
+}
 endforeach;	 
     return $Content;
 }
